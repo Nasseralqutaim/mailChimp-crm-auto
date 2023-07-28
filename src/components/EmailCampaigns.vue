@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     async createCampaign() {
-      await axios.post("/api/email-campaigns", this.newCampaign);
+      await axios.post("http://localhost:8000/api/email-campaigns", this.newCampaign);
       await this.fetchCampaigns();
       this.newCampaign = {
         name: "",
@@ -52,7 +52,7 @@ export default {
       this.selectedCampaign = campaign;
     },
     async updateCampaign() {
-      await axios.put(`/api/email-campaigns/${this.selectedCampaign.id}`, this.newCampaign);
+      await axios.put(`"http://localhost:8000/api/email-campaigns/${this.selectedCampaign.id}`, this.newCampaign);
       await this.fetchCampaigns();
       this.newCampaign = {
         name: "",
@@ -73,12 +73,13 @@ export default {
     },
 
     async fetchCampaigns() {
-      const response = await axios.get("/api/email-campaigns");
+      const response = await axios.get("http://localhost:8000/api/email-campaigns");
+
       this.campaigns = response.data;
     },
 
     async deleteCampaign(id) {
-      await axios.delete(`/api/email-campaigns/${id}`);
+      await axios.delete(`"http://localhost:8000/api/email-campaigns/${id}`);
       await this.fetchCampaigns();
     },
   },
@@ -87,5 +88,3 @@ export default {
   },
 };
 </script>
-
-<!-- ... -->
